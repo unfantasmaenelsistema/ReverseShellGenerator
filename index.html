@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Reverse Shells</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Generador de Reverse Shells 🌐</h1>
+        <p>Introduce tu IP y puerto para generar comandos de shells reversas listos para usar.</p>
+
+        <div class="input-group">
+            <label for="attackerIP">Dirección IP del atacante:</label>
+            <input type="text" id="attackerIP" placeholder="Ej: 192.168.1.100" required>
+        </div>
+
+        <div class="input-group">
+            <label for="attackerPort">Puerto de escucha:</label>
+            <input type="number" id="attackerPort" placeholder="Ej: 4444" required>
+        </div>
+
+        <div class="buttons-grid">
+            <button onclick="generateShell('bash')">Bash</button>
+            <button onclick="generateShell('python')">Python</button>
+            <button onclick="generateShell('netcat')">Netcat</button>
+            <button onclick="generateShell('powershell')">PowerShell</button>
+            <button onclick="generateShell('php')">PHP</button>
+            <button onclick="generateShell('perl')">Perl</button>
+            <button onclick="generateShell('ruby')">Ruby</button>
+            <button onclick="generateShell('nc-openbsd')">Netcat (OpenBSD)</button>
+        </div>
+
+        <div class="output-section">
+            <label for="outputShell">Comando generado:</label>
+            <textarea id="outputShell" readonly></textarea>
+            <button class="copy-button" onclick="copyToClipboard()">Copiar Comando</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

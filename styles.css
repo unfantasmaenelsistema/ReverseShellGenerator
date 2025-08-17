@@ -1,0 +1,106 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    background-color: #161b22;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+}
+
+h1 {
+    color: #58a6ff;
+    border-bottom: 2px solid #30363d;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #8b949e;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="number"] {
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    background-color: #010409;
+    color: #e6edf3;
+    font-size: 1em;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+button {
+    background-color: #238636;
+    color: #fff;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2ea043;
+}
+
+.output-section {
+    margin-top: 20px;
+    text-align: left;
+}
+
+textarea {
+    width: calc(100% - 24px);
+    height: 100px;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    background-color: #010409;
+    color: #e6edf3;
+    font-size: 0.9em;
+    resize: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.copy-button {
+    background-color: #58a6ff;
+    margin-top: 15px;
+    display: block;
+    width: 100%;
+}
+
+.copy-button:hover {
+    background-color: #4c91e1;
+}
