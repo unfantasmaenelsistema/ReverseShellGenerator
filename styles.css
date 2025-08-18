@@ -104,3 +104,17 @@ textarea {
 .copy-button:hover {
     background-color: #4c91e1;
 }
+
+/* Estilos para el logo, agregados para solucionar el problema del tamaño */
+.logo-container {
+    margin-bottom: 20px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo-container img {
+    width: 150px;
+    height: auto;
+}
