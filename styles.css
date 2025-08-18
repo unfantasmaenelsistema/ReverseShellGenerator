@@ -2,12 +2,25 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background-color: #0d1117;
     color: #c9d1d9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* Elimina las propiedades de flexbox que centran todo el contenido */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
     min-height: 100vh;
     margin: 0;
     line-height: 1.6;
+    padding: 20px; /* Agrega un padding para que no se pegue a los bordes */
+}
+
+/* Estilos para el logo */
+.logo-container {
+    text-align: center; /* Centra el logo horizontalmente */
+    margin-bottom: 20px; /* Espacio debajo del logo */
+}
+
+.logo-container img {
+    width: 150px;
+    height: auto;
 }
 
 .container {
@@ -18,6 +31,7 @@ body {
     width: 90%;
     max-width: 700px;
     text-align: center;
+    margin: 0 auto; /* Centra el contenedor principal */
 }
 
 h1 {
@@ -103,18 +117,4 @@ textarea {
 
 .copy-button:hover {
     background-color: #4c91e1;
-}
-
-/* Estilos para el logo, agregados para solucionar el problema del tamaño */
-.logo-container {
-    margin-bottom: 20px;
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.logo-container img {
-    width: 150px;
-    height: auto;
 }
