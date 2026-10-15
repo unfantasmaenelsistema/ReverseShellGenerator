@@ -1,48 +1,88 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Reverse Shells</title>
+    <title>Reverse Shell Generator — Un Fantasma en el Sistema</title>
+    <meta name="description" content="Generador de reverse shells para laboratorios, CTF y auditorías autorizadas.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        (function () {
+            var t = null; try { t = localStorage.getItem('rsg_theme'); } catch (e) {}
+            if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
 </head>
 <body>
-    <div class="logo-container">
-        <img src="/ReverseShellGenerator/logo.png" alt="ReverseShellGenerator Logo">
-    </div>
-    <div class="container">
-        <h1>Generador de Reverse Shells 🌐</h1>
-        <p>Introduce tu IP y puerto para generar comandos de shells reversas listos para usar.</p>
+    <header class="top">
+        <a class="brand" href="https://www.unfantasmaenelsistema.com" target="_blank" rel="noopener">
+            <img src="logo.png" alt="Un Fantasma en el Sistema" width="44" height="44">
+            <span><b>REVERSE<span>SHELL</span>GEN</b><small data-t="brandSub">UN FANTASMA EN EL SISTEMA</small></span>
+        </a>
+        <nav class="controls">
+            <a class="chip" href="https://www.unfantasmaenelsistema.com" target="_blank" rel="noopener">[ WEB ]</a>
+            <a class="chip" href="https://ghostore.unfantasmaenelsistema.com/" target="_blank" rel="noopener">[ GHOSTORE ]</a>
+            <button class="chip" id="langBtn" type="button">EN</button>
+            <button class="chip" id="themeBtn" type="button">☀</button>
+        </nav>
+    </header>
 
-        <div class="input-group">
-            <label for="attackerIP">Dirección IP del atacante:</label>
-            <input type="text" id="attackerIP" placeholder="Ej: 192.168.1.100" required>
+    <main class="container">
+        <h1 data-t="title">Generador de Reverse Shells</h1>
+        <p class="lead" data-t="lead">Introduce la IP y el puerto de tu máquina de escucha para generar el comando.</p>
+        <p class="warning" data-t="warning">⚠ Solo para laboratorios, CTF y auditorías con autorización por escrito.</p>
+
+        <div class="inputs">
+            <div class="input-group">
+                <label for="attackerIP" data-t="ipLabel">Dirección IP de escucha</label>
+                <input type="text" id="attackerIP" placeholder="10.10.14.3" autocomplete="off" spellcheck="false" inputmode="url">
+                <small class="field-error" id="ipError" hidden></small>
+            </div>
+            <div class="input-group">
+                <label for="attackerPort" data-t="portLabel">Puerto de escucha</label>
+                <input type="number" id="attackerPort" placeholder="4444" min="1" max="65535">
+                <small class="field-error" id="portError" hidden></small>
+            </div>
         </div>
 
-        <div class="input-group">
-            <label for="attackerPort">Puerto de escucha:</label>
-            <input type="number" id="attackerPort" placeholder="Ej: 4444" required>
-        </div>
-
-        <div class="buttons-grid">
-            <button onclick="generateShell('bash')">Bash</button>
-            <button onclick="generateShell('python')">Python</button>
-            <button onclick="generateShell('netcat')">Netcat</button>
-            <button onclick="generateShell('powershell')">PowerShell</button>
-            <button onclick="generateShell('php')">PHP</button>
-            <button onclick="generateShell('perl')">Perl</button>
-            <button onclick="generateShell('ruby')">Ruby</button>
-            <button onclick="generateShell('nc-openbsd')">Netcat (OpenBSD)</button>
+        <div class="buttons-grid" id="shellButtons">
+            <button type="button" data-shell="bash">Bash</button>
+            <button type="button" data-shell="python">Python</button>
+            <button type="button" data-shell="netcat" data-t="ncFifo">Netcat (mkfifo, sin -e)</button>
+            <button type="button" data-shell="nc-openbsd" data-t="ncE">Netcat tradicional (-e)</button>
+            <button type="button" data-shell="php">PHP</button>
+            <button type="button" data-shell="perl">Perl</button>
+            <button type="button" data-shell="ruby">Ruby</button>
+            <button type="button" data-shell="powershell" data-t="psDl">PowerShell (descarga shell.ps1)</button>
         </div>
 
         <div class="output-section">
-            <label for="outputShell">Comando generado:</label>
-            <textarea id="outputShell" readonly></textarea>
-            <button class="copy-button" onclick="copyToClipboard()">Copiar Comando</button>
+            <div class="output-head">
+                <label for="outputShell" data-t="outLabel">Comando generado</label>
+                <span class="tag" id="shellName"></span>
+            </div>
+            <textarea id="outputShell" readonly spellcheck="false"></textarea>
+            <p class="note" id="shellNote" hidden></p>
+            <button type="button" class="copy-button" id="copyBtn" data-t="copy">Copiar comando</button>
+            <p class="status" id="status" aria-live="polite"></p>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <span data-t="footer">Material educativo. Usarlo contra sistemas sin permiso es delito.</span>
+        <span class="links">
+            <a href="https://www.unfantasmaenelsistema.com" target="_blank" rel="noopener">unfantasmaenelsistema.com</a>
+            <a href="https://github.com/unfantasmaenelsistema/ReverseShellGenerator" target="_blank" rel="noopener" data-t="source">Código fuente</a>
+        </span>
+    </footer>
 
     <script src="script.js"></script>
+    <script src="ui.js"></script>
 </body>
 
 </html>
